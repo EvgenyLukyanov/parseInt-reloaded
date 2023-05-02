@@ -1,0 +1,52 @@
+ackage test;
+
+public class Test {
+
+    public static void main(String[] args) {
+        String numStr = "ten";
+        if ("".equals(numStr)) {
+            System.out.println(-1);
+        }
+        String StrResult = "";
+        String[] array = numStr.split(" |-");
+        String[] oneTen = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
+        String[] tenNineteen = {"", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", ""};
+        String[] twentyNinety = {"", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety", ""};
+        String[] million = {"hundred", "thousand", "million"};
+        int IntResult = 0;
+        for (String array1 : array) {
+            for (int j = 0; j < oneTen.length; j++) {
+                if (array1.equals(oneTen[j])) {
+                    IntResult += j;
+                }
+                if (array1.equals(tenNineteen[j])) {
+                    IntResult += j + 10;
+                }
+                if (array1.equals(twentyNinety[j])) {
+                    IntResult += j * 10;
+                }
+            }
+            if (array1.equals(million[0])) {
+                IntResult *= 100;
+            }
+            if (array1.equals(million[1])) {
+                IntResult *= 1000;
+                StrResult = StrResult + Integer.toString(IntResult) + " ";
+                IntResult = 0;
+            }
+            if (array1.equals(million[2])) {
+                IntResult *= 1_000_000;
+                StrResult = StrResult + Integer.toString(IntResult) + " ";
+                IntResult = 0;
+            }
+        }
+        StrResult = StrResult + Integer.toString(IntResult) + " ";
+        String[] ArrayResult = StrResult.split(" ");
+        IntResult = 0;
+        for (String s1 : ArrayResult) {
+            IntResult += Integer.valueOf(s1);
+        }
+        System.out.println(IntResult);
+
+    }
+}
